@@ -1,0 +1,91 @@
+import { router, Stack } from "expo-router";
+import React, {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { ActivityIndicator, View } from "react-native";
+import { storage, STORAGE_KEYS } from "../lib/storage/storage";
+import { AuthContextType, User } from "./types";
+
+// Create the context
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+// Provider component
+export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true); // for hydration status
+
+  const signIn = (userData: User) => {
+    setUser(userData);
+    router.replace("/(tabs)");
+    storage.set(STORAGE_KEYS.USER, userData);
+  };
+
+  const signOut = () => {
+    setUser(null);
+    router.replace("/(auth)/login");
+    storage.remove(STORAGE_KEYS.USER);
+  };
+
+  const showLoader = () => setLoading(true);
+  const hideLoader = () => setLoading(false);
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const loadUser = async () => {
+    const storedUser = await storage.get(STORAGE_KEYS.USER);
+    if (storedUser) {
+      setUser(storedUser);
+    }
+    setLoading(false);
+  };
+
+  const value: AuthContextType = {
+    user,
+    isAuthenticated: !!user,
+    loading,
+    signIn,
+    signOut,
+    showLoader,
+    hideLoader,
+  };
+
+  // Optional: Show splash/loading screen while checking storage
+  if (loading) return null;
+
+  return (
+    <AuthContext.Provider value={value}>
+      {loading ? (
+        <Stack screenOptions={{ headerShown: false }}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "red",
+            }}
+          >
+            <ActivityIndicator size={"large"} color={"#000"} />
+          </View>
+        </Stack>
+      ) : (
+        children
+      )}
+    </AuthContext.Provider>
+  );
+};
+
+// Hook for using context
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
