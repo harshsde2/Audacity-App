@@ -51,7 +51,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
 
   // Set up status bar style based on theme
   const barStyle = statusBarStyle || "light-content";
-  const barColor = statusBarColor || "#4e4e44ff";
+  const barColor = statusBarColor || "#484842ff";
 
   // Determine padding values
   const screenPadding = theme.spacing.layout.screenPadding;

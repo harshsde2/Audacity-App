@@ -1,55 +1,14 @@
-import { SvgIcons } from "@/src/assets/svgs";
-import SharedTranstionCard from "@/src/components/animation/components/shared-transition-card-animation/SharedTranstionCard";
-import ShuffleCard from "@/src/components/animation/components/suffle-card-animation/ShuffleCard";
-import ShuffleCardListComponent from "@/src/components/animation/components/suffle-card-animation/ShuffleCardListComponent";
-import Card from "@/src/components/common-components/Card";
-import CustomText from "@/src/components/common-components/CustomText";
-import GenericButton from "@/src/components/common-components/GenericButton";
 import ScreenContainer from "@/src/components/common-components/ScreenContainer";
-import { useAuth } from "@/src/context/AuthContext";
-import { useTheme } from "@/src/styles";
+import ScreenIndicatorComponent from "@/src/components/common-components/ScreenIndicatorComponent";
+import { DashboardScreens } from "@/src/lib/constants/constant";
 import { useGlobalStyles } from "@/src/styles/GlobalStyles";
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
+import PagerView from "react-native-pager-view";
 
 const home = () => {
-  const auth = useAuth();
-  const { theme } = useTheme();
+  const [pageIndex, setPageIndex] = useState(0);
   const styles = { ...useGlobalStyles() };
-  const Cards = [
-    {
-      id: 0,
-      title: "Average Interest on Savings",
-      heading: "Your Average Interest",
-      percent: "%",
-      description:
-        "Your savings are earning 1.8% — is your money working hard enough?",
-    },
-    {
-      id: 1,
-      title: "Average Interest on Savings",
-      heading: "Your Average Interest",
-      percent: "1.8%",
-      description:
-        "Your savings are earning 1.8% — is your money working hard enough?",
-    },
-    {
-      id: 2,
-      title: "Average Interest on Savings",
-      heading: "Your Average Interest",
-      percent: "1.8%",
-      description:
-        "Your savings are earning 1.8% — is your money working hard enough?",
-    },
-    {
-      id: 3,
-      title: "Average Interest on Savings",
-      heading: "Your Average Interest",
-      percent: "asdsa",
-      description:
-        "Your savings are earning 1.8% — is your money working hard enough?",
-    },
-  ];
 
   return (
     <ScreenContainer
@@ -58,52 +17,31 @@ const home = () => {
       paddingHorizontal={10}
       paddingVertical={5}
     >
-      {/* <AIInputConponent /> */}
-      <Card
-        borderRadius={theme.spacing.spacing[4]}
-        style={[styles.cardRowWithAlign]}
-      >
-        <SvgIcons.WorthMoney />
-        <View style={{ gap: 0 }}>
-          <CustomText variant={"h4"}>Get your money's worth</CustomText>
-          <CustomText size={12} variant={"subtitle2"}>
-            Finish setting up Audacity
-          </CustomText>
+      <View style={[{ flex: 1 }]}>
+        {/* Header  */}
+        <View style={[styles.indicatorContainer]}>
+          {DashboardScreens.map((screen, index) => {
+            return (
+              <ScreenIndicatorComponent
+                title={screen.title}
+                showTitle={index == pageIndex}
+                key={index}
+              />
+            );
+          })}
         </View>
-      </Card>
-      <ShuffleCardListComponent>
-        {Cards.map((card, index) => {
-          return <ShuffleCard id={card.id} key={index} cardItem={card} />;
-        })}
-      </ShuffleCardListComponent>
-      <View>
-        <SharedTranstionCard />
-      </View>
-      <View>
-        <Card
-          style={[
-            { gap: 5, marginVertical: 10, width: "100%", marginBottom: 120 },
-          ]}
-          borderRadius={theme.spacing.spacing[4]}
+        {/* Page View */}
+        <PagerView
+          style={{ flex: 1 }}
+          initialPage={0}
+          onPageSelected={(e) => setPageIndex(e.nativeEvent.position)}
         >
-          <View style={[{ marginBottom: 20, gap: 5 }]}>
-            <CustomText size={11} color={theme.colors.palette.defaultFadeText}>
-              Account Connection
-            </CustomText>
-            <CustomText size={24} variant={"h1"}>
-              A single place to grow your wealth
-            </CustomText>
-            <CustomText variant={"body1"}>
-              4000+ Brokers, Banks, Pensions and Wrappers.
-            </CustomText>
-          </View>
-          <GenericButton
-            title="Add Account"
-            onPress={() => {}}
-            cStyle={{ backgroundColor: theme.colors.palette.white100 }}
-            tStyle={{ color: "#000" }}
-          />
-        </Card>
+          {DashboardScreens.map((screen, index) => (
+            <View style={{ flex: 1 }} key={index}>
+              {screen.component}
+            </View>
+          ))}
+        </PagerView>
       </View>
     </ScreenContainer>
   );

@@ -15,6 +15,13 @@ export const globalStyles = (theme: Theme) =>
       alignItems: "center",
       gap: 10,
     },
+    indicatorContainer: {
+      width: "100%",
+      height: 70,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
     shadowContainer: {
       shadowColor: theme.colors.palette.black,
       shadowOffset: {

@@ -29,13 +29,11 @@ const SharedTranstionCard = () => {
   ];
   return (
     <Card style={[{ gap: 5 }]} borderRadius={theme.spacing.spacing[4]}>
-      <View style={[{ marginBottom: 50 }]}>
+      <View style={[{ marginBottom: 50, gap: 10 }]}>
         <CustomText size={11} color={theme.colors.palette.defaultFadeText}>
           PLAN WITH AI
         </CustomText>
-        <CustomText size={24} variant={"h1"}>
-          Real-time Analysis with AI.
-        </CustomText>
+        <CustomText variant={"h4"}>Real-time Analysis with AI.</CustomText>
         <CustomText variant={"body1"}>
           Instant insight from Alice, your AI-Powered financial assistant.
         </CustomText>

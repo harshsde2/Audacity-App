@@ -12,7 +12,7 @@ const AIInputConponent = () => {
   return (
     <Card
       borderColor={theme.colors.palette.golden400}
-      backgroundColor={theme.colors.palette.golden500}
+      backgroundColor={theme.colors.palette.golden600}
       borderRadius={theme.spacing.spacing[10]}
       padding={5}
       style={[

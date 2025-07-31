@@ -9,6 +9,10 @@ export const themePalette = {
   bgLinearGradiantV2: "#31301CA1",
   bgLinearGradiantV3: "#101010FF",
 
+  cardLinearGradiantV1: "#FEE276",
+  cardLinearGradiantV2: "#FFAC49",
+  cardLinearGradiantV3: "#EE9020",
+
   blue500: "#3499E0",
   orange500: "#FF7D20",
   red500: "#FF3A20",
@@ -34,6 +38,7 @@ export const baseColors = {
   defaultCardBg: "#11110C",
   defaultCardBorder: "#2E2E2E",
 
+  golden600: "#353535",
   golden500: "#7D7971",
   golden400: "#F7DDB499",
   golden100: "#F7DDB4",
