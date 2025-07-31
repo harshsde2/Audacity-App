@@ -27,6 +27,7 @@ interface ScreenContainerProps {
   style?: StyleProp<ViewStyle>;
   contentContainerStyle?: StyleProp<ViewStyle>;
   backgroundColor?: string;
+  hideAiInput?: boolean;
 }
 
 /**
@@ -46,6 +47,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   style,
   contentContainerStyle,
   backgroundColor,
+  hideAiInput = true,
 }) => {
   const { theme } = useTheme();
 
@@ -134,9 +136,11 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
             style={StyleSheet.absoluteFill} // Full screen gradient
           />
           {keyboardContent}
-          <View style={{}}>
-            <AIInputConponent />
-          </View>
+          {hideAiInput && (
+            <View style={{}}>
+              <AIInputConponent />
+            </View>
+          )}
         </SafeAreaView>
       ) : (
         <View style={containerStyle}>

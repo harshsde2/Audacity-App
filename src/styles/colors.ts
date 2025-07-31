@@ -37,6 +37,7 @@ export const baseColors = {
   defaultHighFadeText: "#F9F1E1CC",
   defaultCardBg: "#11110C",
   defaultCardBorder: "#2E2E2E",
+  sharedElementCardBg: "#373724",
 
   golden600: "#353535",
   golden500: "#7D7971",

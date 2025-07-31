@@ -1,5 +1,6 @@
 import ScreenContainer from "@/src/components/common-components/ScreenContainer";
 import ScreenIndicatorComponent from "@/src/components/common-components/ScreenIndicatorComponent";
+import UserDetailsCard from "@/src/components/common-components/UserDetailsCard";
 import { DashboardScreens } from "@/src/lib/constants/constant";
 import { useGlobalStyles } from "@/src/styles/GlobalStyles";
 import React, { useState } from "react";
@@ -18,6 +19,7 @@ const home = () => {
       paddingVertical={5}
     >
       <View style={[{ flex: 1 }]}>
+        <UserDetailsCard />
         {/* Header  */}
         <View style={[styles.indicatorContainer]}>
           {DashboardScreens.map((screen, index) => {
@@ -30,6 +32,7 @@ const home = () => {
             );
           })}
         </View>
+
         {/* Page View */}
         <PagerView
           style={{ flex: 1 }}

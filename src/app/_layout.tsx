@@ -1,11 +1,12 @@
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useFonts } from "expo-font";
 import { router, Stack } from "expo-router";
 import React, { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider, useAuth } from "../context/AuthContext";
 import { storage, STORAGE_KEYS } from "../lib/storage/storage";
 import { ThemeProvider } from "../styles";
-
 const AppContent: React.FC = () => {
   const [fontsLoaded] = useFonts({
     // Naveid
@@ -23,10 +24,17 @@ const AppContent: React.FC = () => {
     NeueMontrealMediumItalic: require("@/src/assets/fonts/NeueMontreal-MediumItalic.otf"),
     NeueMontrealRegular: require("@/src/assets/fonts/NeueMontreal-Regular.otf"),
   });
-  const { signIn, showLoader, hideLoader } = useAuth();
+  const { signIn } = useAuth();
 
   useEffect(() => {
     loadUser();
+    GoogleSignin.configure({
+      webClientId:
+        "35626446812-rb6ok6c70dnd1ocvlgtkeimh7ejlefpi.apps.googleusercontent.com",
+      iosClientId:
+        "35626446812-c6uvth81096k2htpl9r06pqtie8a5ec0.apps.googleusercontent.com",
+      profileImageSize: 150,
+    });
   }, []);
 
   const loadUser = async () => {
@@ -57,13 +65,15 @@ const RootlLayout = () => {
   // console.log("root layout");
 
   return (
-    <SafeAreaProvider>
-      <ThemeProvider>
-        <AuthProvider>
-          <AppContent />
-        </AuthProvider>
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <AppContent />
+          </AuthProvider>
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 };
 

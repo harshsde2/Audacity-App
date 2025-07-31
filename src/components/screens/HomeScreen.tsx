@@ -50,6 +50,8 @@ const HomeScreen = () => {
     },
   ];
 
+  console.log("auth user =>", auth.user);
+
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
       <Card
@@ -74,11 +76,9 @@ const HomeScreen = () => {
       <View>
         <SharedTranstionCard />
       </View>
-      <View>
+      <View style={[{ marginBottom: 120 }]}>
         <Card
-          style={[
-            { gap: 5, marginVertical: 10, width: "100%", marginBottom: 120 },
-          ]}
+          style={[{ gap: 5, marginVertical: 10, width: "100%" }]}
           borderRadius={theme.spacing.spacing[4]}
         >
           <View style={[{ marginBottom: 20, gap: 10 }]}>
@@ -93,7 +93,7 @@ const HomeScreen = () => {
             </CustomText>
           </View>
           <GenericButton
-            title="Add Account"
+            title="Add Account "
             onPress={() => {}}
             cStyle={{ backgroundColor: theme.colors.palette.white100 }}
             tStyle={{ color: "#000" }}

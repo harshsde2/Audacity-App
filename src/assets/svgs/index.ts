@@ -9,6 +9,7 @@ import ProgressBar from "./ProgressBar.svg";
 import ProgressWithPercentage from "./ProgressWithPercentage.svg";
 import VanguardLogo from "./VanguardLogo.svg";
 import WorthMoney from "./WorthMoney.svg";
+import googleIcon from "./googleIcon.svg";
 
 export const SvgIcons = {
   AIIcon,
@@ -22,4 +23,5 @@ export const SvgIcons = {
   Percentage,
   ProgressWithPercentage,
   Avatar,
+  googleIcon,
 };

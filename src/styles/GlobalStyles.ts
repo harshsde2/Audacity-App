@@ -17,7 +17,7 @@ export const globalStyles = (theme: Theme) =>
     },
     indicatorContainer: {
       width: "100%",
-      height: 70,
+      height: 50,
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",

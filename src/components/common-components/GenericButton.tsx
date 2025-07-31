@@ -49,7 +49,13 @@ const GenericButton: FC<GenericButtonProps> = ({
       }}
     >
       {!showLoader && (
-        <View style={[styles.flexbox]}>
+        <View
+          style={[
+            styles.flexbox,
+            { justifyContent: icon ? "space-around" : "center" },
+          ]}
+        >
+          {icon && icon}
           <CustomText
             variant={"button"}
             color={theme.colors.palette.white}
@@ -63,17 +69,25 @@ const GenericButton: FC<GenericButtonProps> = ({
       {showLoader && (
         <View style={[styles.flexbox]}>
           {!isLoading ? (
-            <CustomText
-              variant={"button"}
-              color={theme.colors.palette.white}
-              style={{}}
+            <View
+              style={[
+                styles.flexbox,
+                { justifyContent: icon ? "space-around" : "center" },
+              ]}
             >
-              {title}
-            </CustomText>
+              {icon && icon}
+              <CustomText
+                variant={"button"}
+                color={theme.colors.palette.defaultCardBg}
+                style={{}}
+              >
+                {title}
+              </CustomText>
+            </View>
           ) : (
             <ActivityIndicator
               size={"small"}
-              color={theme?.colors?.palette?.white}
+              color={theme?.colors?.palette?.defaultCardBg}
             />
           )}
         </View>

@@ -1,13 +1,15 @@
 import { SvgIcons } from "@/src/assets/svgs";
+import { useAuth } from "@/src/context/AuthContext";
 import { useTheme } from "@/src/styles";
 import { useGlobalStyles } from "@/src/styles/GlobalStyles";
 import React from "react";
-import { ScrollView, View } from "react-native";
+import { Image, ScrollView, View } from "react-native";
 import Card from "../common-components/Card";
 import CustomText from "../common-components/CustomText";
 
 const ChatScreen = () => {
   const { theme } = useTheme();
+  const auth = useAuth();
   const styles = { ...useGlobalStyles() };
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
@@ -19,7 +21,16 @@ const ChatScreen = () => {
           <CustomText style={{ flex: 1 }}>
             How is my Portfolio doing?
           </CustomText>
-          <SvgIcons.Avatar />
+          {auth.user?.photoUrl ? (
+            <Image
+              source={{ uri: auth.user?.photoUrl }}
+              width={30}
+              height={30}
+              style={{ borderRadius: 15 }}
+            />
+          ) : (
+            <SvgIcons.Avatar />
+          )}
         </Card>
         <View style={[{ width: "90%", marginTop: 20 }]}>
           <SvgIcons.AudacityLogo />

@@ -21,7 +21,7 @@ const ScreenIndicatorComponent: FC<ScreenIndicatorComponentProps> = ({
           margin: 5,
           height: showTitle ? 30 : 0,
           padding: 5,
-          borderRadius: theme.spacing.spacing[3],
+          borderRadius: theme.spacing.spacing[4],
         },
       ]}
     >

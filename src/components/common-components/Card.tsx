@@ -4,11 +4,12 @@ import {
   LayoutChangeEvent,
   StyleProp,
   StyleSheet,
-  View,
+  TouchableOpacity,
+  TouchableOpacityProps,
   ViewStyle,
 } from "react-native";
 
-interface CardProps {
+interface CardProps extends TouchableOpacityProps {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   backgroundColor?: string;
@@ -32,6 +33,7 @@ const Card: React.FC<CardProps> = ({
   borderWidth,
   padding = 20,
   onLayout,
+  ...props
 }) => {
   const { theme } = useTheme();
 
@@ -42,7 +44,8 @@ const Card: React.FC<CardProps> = ({
   const defaultBorderWidth = borderWidth !== undefined ? borderWidth : 1;
 
   return (
-    <View
+    <TouchableOpacity
+      activeOpacity={1}
       onLayout={onLayout}
       style={[
         styles.card,
@@ -57,9 +60,10 @@ const Card: React.FC<CardProps> = ({
         },
         style,
       ]}
+      {...props}
     >
       {children}
-    </View>
+    </TouchableOpacity>
   );
 };
 
