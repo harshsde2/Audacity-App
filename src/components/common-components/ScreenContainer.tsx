@@ -137,9 +137,9 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
           />
           {keyboardContent}
           {hideAiInput && (
-            <View style={{}}>
+            <KeyboardAvoidingView style={{}}>
               <AIInputConponent />
-            </View>
+            </KeyboardAvoidingView>
           )}
         </SafeAreaView>
       ) : (

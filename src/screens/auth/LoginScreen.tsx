@@ -62,38 +62,42 @@ const LoginScreen = () => {
   };
 
   return (
-    <ScreenContainer avoidKeyboard hideAiInput={false} padding={20}>
-      <View
-        style={[
-          { alignItems: "flex-start", flex: 1, justifyContent: "space-around" },
-        ]}
-      >
+    <KeyboardAvoidingView style={{ flex: 1 }}>
+      <ScreenContainer hideAiInput={false} padding={20}>
         <View
           style={[
             {
-              // justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: 100,
-              // backgroundColor: "red",
+              alignItems: "flex-start",
+              flex: 1,
+              justifyContent: "space-around",
             },
           ]}
         >
-          <CustomText variant="h4" style={{ fontSize: 24 }}>
-            Hi ! Welcome to
-          </CustomText>
-          <SvgIcons.AudacityLogo
-            style={[{ position: "absolute", top: -30 }]}
-            width={170}
-            height={170}
-          />
-        </View>
-        <Card
-          style={[
-            { width: "100%", justifyContent: "center", alignItems: "center" },
-          ]}
-        >
-          <KeyboardAvoidingView>
+          <View
+            style={[
+              {
+                // justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: 100,
+                // backgroundColor: "red",
+              },
+            ]}
+          >
+            <CustomText variant="h4" style={{ fontSize: 24 }}>
+              Hi ! Welcome to
+            </CustomText>
+            <SvgIcons.AudacityLogo
+              style={[{ position: "absolute", top: -30 }]}
+              width={170}
+              height={170}
+            />
+          </View>
+          <Card
+            style={[
+              { width: "100%", justifyContent: "center", alignItems: "center" },
+            ]}
+          >
             <View style={[{ width: "100%", gap: 10 }]}>
               <View style={[{ gap: 10 }]}>
                 <CustomText
@@ -150,62 +154,62 @@ const LoginScreen = () => {
                 />
               </View>
             </View>
-          </KeyboardAvoidingView>
 
-          <GenericButton
-            // icon={<SvgIcons.googleIcon width={20} height={20} style={{}} />}
-            title="Sign in"
-            onPress={() => {
-              // handleLogin();
-              // setIsLoading(!isLoading);
-            }}
-            cStyle={{
-              borderRadius: 8,
-              width: "70%",
-              marginTop: 20,
-              marginBottom: 10,
-              padding: 7,
-              backgroundColor: theme.colors.palette.white100,
-            }}
-            tStyle={[{ color: theme.colors.palette.defaultCardBg }]}
-          />
-          <View style={[styles.cardRowWithAlign, { width: "70%" }]}>
-            <View
-              style={{
-                height: 1,
-                width: "40%",
-                backgroundColor: theme.colors.palette.defaultFadeText,
+            <GenericButton
+              // icon={<SvgIcons.googleIcon width={20} height={20} style={{}} />}
+              title="Sign in"
+              onPress={() => {
+                // handleLogin();
+                // setIsLoading(!isLoading);
               }}
-            />
-            <CustomText>Or</CustomText>
-            <View
-              style={{
-                height: 1,
-                width: "40%",
-                backgroundColor: theme.colors.palette.defaultFadeText,
+              cStyle={{
+                borderRadius: 8,
+                width: "70%",
+                marginTop: 20,
+                marginBottom: 10,
+                padding: 7,
+                backgroundColor: theme.colors.palette.white100,
               }}
+              tStyle={[{ color: theme.colors.palette.defaultCardBg }]}
             />
-          </View>
-          <GenericButton
-            icon={<SvgIcons.googleIcon width={20} height={20} style={{}} />}
-            title="Sign in With Google"
-            onPress={() => {
-              handleLogin();
-            }}
-            cStyle={{
-              borderRadius: 8,
-              width: "70%",
-              marginTop: 10,
-              padding: 7,
-              backgroundColor: theme.colors.palette.white100,
-            }}
-            tStyle={[{ color: theme.colors.palette.defaultCardBg }]}
-            showLoader={true}
-            isLoading={isLoading}
-          />
-        </Card>
-      </View>
-    </ScreenContainer>
+            <View style={[styles.cardRowWithAlign, { width: "70%" }]}>
+              <View
+                style={{
+                  height: 1,
+                  width: "40%",
+                  backgroundColor: theme.colors.palette.defaultFadeText,
+                }}
+              />
+              <CustomText>Or</CustomText>
+              <View
+                style={{
+                  height: 1,
+                  width: "40%",
+                  backgroundColor: theme.colors.palette.defaultFadeText,
+                }}
+              />
+            </View>
+            <GenericButton
+              icon={<SvgIcons.googleIcon width={20} height={20} style={{}} />}
+              title="Sign in With Google"
+              onPress={() => {
+                handleLogin();
+              }}
+              cStyle={{
+                borderRadius: 8,
+                width: "70%",
+                marginTop: 10,
+                padding: 7,
+                backgroundColor: theme.colors.palette.white100,
+              }}
+              tStyle={[{ color: theme.colors.palette.defaultCardBg }]}
+              showLoader={true}
+              isLoading={isLoading}
+            />
+          </Card>
+        </View>
+      </ScreenContainer>
+    </KeyboardAvoidingView>
   );
 };
 

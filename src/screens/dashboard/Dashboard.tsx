@@ -17,6 +17,7 @@ const Dashboard = () => {
       padding={0}
       paddingHorizontal={10}
       paddingVertical={5}
+      avoidKeyboard
     >
       <View style={[{ flex: 1 }]}>
         <UserDetailsCard />

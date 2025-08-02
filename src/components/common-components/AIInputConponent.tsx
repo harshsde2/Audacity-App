@@ -30,6 +30,7 @@ const AIInputConponent = () => {
       <SvgIcons.AIIcon />
       <View style={[{ flex: 1 }]}>
         <TextInput
+          editable={false}
           placeholderTextColor={theme.colors.palette.golden400}
           placeholder="Ask AI"
           value={text}
