@@ -1,4 +1,5 @@
 import { Key, ReactElement, ReactNode } from "react";
+import { SharedValue } from "react-native-reanimated";
 
 export type ShuffleCardItem = {
   id: Key;
@@ -14,8 +15,8 @@ export type ShuffleCardProps = {
 };
 export type GestureCardProps = {
   children: ReactNode;
-  id: string;
-  positions: Positions;
+  id: any;
+  positions: SharedValue<Positions>;
 };
 
 export type ShuffleCardListComponentProps = {

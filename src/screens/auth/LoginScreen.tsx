@@ -12,12 +12,10 @@ import {
   isSuccessResponse,
   statusCodes,
 } from "@react-native-google-signin/google-signin";
-import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { TextInput, View } from "react-native";
+import { KeyboardAvoidingView, TextInput, View } from "react-native";
 
 const LoginScreen = () => {
-  const router = useRouter();
   const auth = useAuth();
   const { theme } = useTheme();
   const styles = { ...useGlobalStyles() };
@@ -64,7 +62,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <ScreenContainer hideAiInput={false} padding={20}>
+    <ScreenContainer avoidKeyboard hideAiInput={false} padding={20}>
       <View
         style={[
           { alignItems: "flex-start", flex: 1, justifyContent: "space-around" },
@@ -95,68 +93,70 @@ const LoginScreen = () => {
             { width: "100%", justifyContent: "center", alignItems: "center" },
           ]}
         >
-          <View style={[{ width: "100%", gap: 10 }]}>
-            <View style={[{ gap: 10 }]}>
-              <CustomText
-                style={{ paddingLeft: theme.spacing.spacing[2] }}
-                size={14}
-                variant="body2"
-              >
-                Enter Email
-              </CustomText>
-              <TextInput
-                placeholder="abc@gmail.com"
-                placeholderTextColor={theme.colors.palette.defaultFadeText}
-                value={email}
-                onChangeText={(text) => {
-                  setEmail(text);
-                }}
-                style={[
-                  {
-                    color: theme.colors.palette.white100,
+          <KeyboardAvoidingView>
+            <View style={[{ width: "100%", gap: 10 }]}>
+              <View style={[{ gap: 10 }]}>
+                <CustomText
+                  style={{ paddingLeft: theme.spacing.spacing[2] }}
+                  size={14}
+                  variant="body2"
+                >
+                  Enter Email
+                </CustomText>
+                <TextInput
+                  placeholder="abc@gmail.com"
+                  placeholderTextColor={theme.colors.palette.defaultFadeText}
+                  value={email}
+                  onChangeText={(text) => {
+                    setEmail(text);
+                  }}
+                  style={[
+                    {
+                      color: theme.colors.palette.white100,
 
-                    borderRadius: theme.spacing.spacing[4],
-                    borderColor: theme.colors.palette.golden100,
-                    borderWidth: 1 / 2,
-                    paddingLeft: theme.spacing.spacing[4],
-                  },
-                ]}
-              />
+                      borderRadius: theme.spacing.spacing[4],
+                      borderColor: theme.colors.palette.golden100,
+                      borderWidth: 1 / 2,
+                      paddingLeft: theme.spacing.spacing[4],
+                    },
+                  ]}
+                />
+              </View>
+              <View style={[{ gap: 10 }]}>
+                <CustomText
+                  style={{ paddingLeft: theme.spacing.spacing[2] }}
+                  size={14}
+                  variant="body2"
+                >
+                  Password
+                </CustomText>
+                <TextInput
+                  placeholder="Password"
+                  placeholderTextColor={theme.colors.palette.defaultFadeText}
+                  value={password}
+                  secureTextEntry
+                  onChangeText={(text) => {
+                    setPassword(text);
+                  }}
+                  style={[
+                    {
+                      color: theme.colors.palette.white100,
+                      borderRadius: theme.spacing.spacing[4],
+                      borderColor: theme.colors.palette.golden100,
+                      borderWidth: 1 / 2,
+                      paddingLeft: theme.spacing.spacing[4],
+                    },
+                  ]}
+                />
+              </View>
             </View>
-            <View style={[{ gap: 10 }]}>
-              <CustomText
-                style={{ paddingLeft: theme.spacing.spacing[2] }}
-                size={14}
-                variant="body2"
-              >
-                Password
-              </CustomText>
-              <TextInput
-                placeholder="Password"
-                placeholderTextColor={theme.colors.palette.defaultFadeText}
-                value={password}
-                secureTextEntry
-                onChangeText={(text) => {
-                  setPassword(text);
-                }}
-                style={[
-                  {
-                    color: theme.colors.palette.white100,
-                    borderRadius: theme.spacing.spacing[4],
-                    borderColor: theme.colors.palette.golden100,
-                    borderWidth: 1 / 2,
-                    paddingLeft: theme.spacing.spacing[4],
-                  },
-                ]}
-              />
-            </View>
-          </View>
+          </KeyboardAvoidingView>
 
           <GenericButton
             // icon={<SvgIcons.googleIcon width={20} height={20} style={{}} />}
             title="Sign in"
             onPress={() => {
-              handleLogin();
+              // handleLogin();
               // setIsLoading(!isLoading);
             }}
             cStyle={{

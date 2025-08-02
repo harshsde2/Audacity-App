@@ -22,6 +22,7 @@ export const themePalette = {
 export const baseColors = {
   // Core UI colors
   accent: "#3498db",
+  transparent: "transparent",
 
   // Status colors
   success: "#2ecc71",

@@ -9,6 +9,9 @@ export type User = {
 export type AuthContextType = {
   user: User | null;
   isAuthenticated: boolean;
+  isSharedTransitionCardOpen: boolean;
   signIn: (userData: User) => void;
   signOut: () => void;
+  onSharedTransitionCardOpen: () => void;
+  onSharedTransitionCardClose: () => void;
 };

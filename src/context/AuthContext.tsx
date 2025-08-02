@@ -1,4 +1,3 @@
-import { router } from "expo-router";
 import React, {
   createContext,
   FC,
@@ -16,18 +15,24 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // Provider component
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isSharedTransitionCardOpen, setIsSharedTransitionCardOpen] =
+    useState(false);
   // const [loading, setLoading] = useState(true); // for hydration status
 
   const signIn = (userData: User) => {
     setUser(userData);
-    router.replace("/(tabs)");
     storage.set(STORAGE_KEYS.USER, userData);
   };
 
   const signOut = () => {
     setUser(null);
-    router.replace("/(auth)/login");
     storage.remove(STORAGE_KEYS.USER);
+  };
+  const onSharedTransitionCardOpen = () => {
+    setIsSharedTransitionCardOpen(true);
+  };
+  const onSharedTransitionCardClose = () => {
+    setIsSharedTransitionCardOpen(false);
   };
 
   // const showLoader = () => setLoading(true);
@@ -48,9 +53,12 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const value: AuthContextType = {
     user,
     isAuthenticated: !!user,
+    isSharedTransitionCardOpen: isSharedTransitionCardOpen,
     // loading,
     signIn,
     signOut,
+    onSharedTransitionCardOpen,
+    onSharedTransitionCardClose,
     // showLoader,
     // hideLoader,
   };

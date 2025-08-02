@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import PagerView from "react-native-pager-view";
 
-const home = () => {
+const Dashboard = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const styles = { ...useGlobalStyles() };
 
@@ -20,6 +20,7 @@ const home = () => {
     >
       <View style={[{ flex: 1 }]}>
         <UserDetailsCard />
+
         {/* Header  */}
         <View style={[styles.indicatorContainer]}>
           {DashboardScreens.map((screen, index) => {
@@ -50,4 +51,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Dashboard;
